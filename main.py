@@ -112,12 +112,7 @@ class Processor():
             test_wer = seq_eval(self.arg, self.data_loader["test"], self.model, self.device,
                                 "test", 6667, self.arg.work_dir, self.recoder, self.arg.evaluate_tool)
             self.recoder.print_log('Evaluation Done.\n')
-        elif self.arg.phase == "features":
-            for mode in ["train", "dev", "test"]:
-                seq_feature_generation(
-                    self.data_loader[mode + "_eval" if mode == "train" else mode],
-                    self.model, self.device, mode, self.arg.work_dir, self.recoder
-                )
+ 
 
     def save_arg(self):
         arg_dict = vars(self.arg)
