@@ -52,7 +52,6 @@ class TemporalGraph(nn.Module):
             finaledge[:,  i, :, 1] = col_indices[:, i, :] + (i+1) * hw
         finaledge = finaledge.view(b, t_1*self.k, 2)
         finaledge_re = torch.stack((finaledge[:,:,1], finaledge[:,:,0]), dim=-1)
-        # torch.save(finaledge, "./work_dir/test/temproal.pt")
 
         finaledge = torch.cat((finaledge, finaledge_re), dim=1).permute(0,2,1).detach()
         x = rearrange(x, "b c v n-> b (v n) c")
